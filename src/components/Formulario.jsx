@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import Image from '../img/in_posible_fondo_web.png'; // Import using relative path
+import { styled ,createTheme,ThemeProvider} from "@mui/material/styles";
 
 
 import {RegistroService} from '../services/RegistroService'
@@ -96,170 +98,241 @@ export default function Formulario(props) {
     }
 
     
+    const ExampleTextField = styled(TextField)({
+        backgroundColor: "#eee",
+        "& .MuiOutlinedInput-notchedOutline": {
+            border: "20px"
+        },
+        "&.Mui-focused": {
+            "& .MuiOutlinedInput-notchedOutline": {
+                border: "none"
+            }
+        }
+    });
+
+
     
+    const theme = createTheme({
+        palette: {
+          register: {
+            main: '#ffff'
+          }
+        },
+    });
+    
+
     useEffect(() => {
         reloadDataConfig();
     }, [,]);
     
     return(
-        <Box component="form" onSubmit={registrarMaker} sx={{ mt: 1 }}>
+        <Grid container component="main" sx={{ height: '100vh' }}>
+            <Grid
+            item
+            xs={false}
+            sm={12}
+            md={12}
+            sx={{
+                backgroundImage: `url(${Image})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundColor: (t) =>
+                t.palette.mode === 'light' ? t.palette.grey[100] : t.palette.grey[900],
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
+            >
+                <Box component="form" onSubmit={registrarMaker} sx={{ mt: 1 }} m={15} pt={1}>
             
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={12} sm={12} md={12}>
-                    <Typography variant="h4" gutterBottom>
-                        FORMULARIO DE REGISTRO
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12}>
-                    <Typography variant="caption" display="block" >
-                        Regístrate llenando el siguiente formularo y sigue las indicaciones para obtener tu credencial para Congreso Hacedores 2022.
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12}>
-                    <Typography variant="caption" display="block" >
-                        Recuerda asistir temprano para asegurar tu lugar en cada conferencia.
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <FormControl fullWidth>
-                        <InputLabel>Tipo de documento</InputLabel>
-                        <Select
-                            required
-                            labelId="tipo-doc-label"
-                            id="tipo-doc-select"
-                            value={tipoDoc}
-                            label="Tipo de documento"
-                            onChange={handleChangeTipoDoc}
-                            fullWidth
-                        >
-                            {menuItemTipoDoc}
-                        </Select>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                        required
-                        margin="dense"
-                        id="nroDoc"
-                        label="Nro. Documento"
-                        type="text"
-                        variant="standard"
-                        fullWidth
-                        value={nroDoc}
-                        onChange={(e) => setNroDoc(e.target.value)}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                        required
-                        margin="dense"
-                        id="celular"
-                        label="Celular"
-                        type="text"
-                        variant="standard"
-                        fullWidth
-                        value={celular}
-                        onChange={(e) => setCelular(e.target.value)}
-                    />
-                </Grid>
-                
-                <Grid item xs={12} sm={6} md={5}>
-                    <TextField
-                        required
-                        margin="dense"
-                        id="nombre"
-                        label="Nombres"
-                        type="text"
-                        variant="standard"
-                        fullWidth
-                        value={nombres}
-                        onChange={(e) => setNombres(e.target.value)}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} md={5}>
-                    <TextField
-                        required
-                        margin="dense"
-                        id="apellidos"
-                        label="Apellidos"
-                        type="text"
-                        variant="standard"
-                        fullWidth
-                        value={apellidos}
-                        onChange={(e) => setApellidos(e.target.value)}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} md={2}>
-                    <TextField
-                        required
-                        margin="dense"
-                        id="edad"
-                        label="Edad"
-                        type="number"
-                        variant="standard"
-                        fullWidth
-                        value={edad}
-                        onChange={(e) => setEdad(e.target.value)}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <FormControl fullWidth>
-                        <InputLabel>Iglesia</InputLabel>
-                        <Select
-                            required
-                            labelId="iglesia-label"
-                            id="iglesia-select"
-                            value={iglesia}
-                            label="Iglesia"
-                            onChange={handleChangeIglesia}
-                            fullWidth
-                        >
-                            <MenuItem value="Casa de Vida">Casa de Vida</MenuItem>
-                            <MenuItem value="Otra">Otra</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                        disabled={isDisabledIglesia}
-                        margin="dense"
-                        id="otraIglesia"
-                        label="Ingrese nombre de su iglesia"
-                        type="text"
-                        variant="standard"
-                        fullWidth
-                        value={otraIglesia}
-                        onChange={(e) => setOtraIglesia(e.target.value)}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                <TextField
-                        margin="dense"
-                        id="ciudad"
-                        label="Ciudad"
-                        type="text"
-                        variant="standard"
-                        fullWidth
-                        value={ciudad}
-                        onChange={(e) => setCiudad(e.target.value)}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <TextField
-                        margin="dense"
-                        id="email"
-                        label="Correo electrónico"
-                        type="text"
-                        variant="standard"
-                        fullWidth
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </Grid> 
-                <Grid item xs={12} sm={6} md={12}>
-                    <Button type="submit" variant="contained" >Registrar</Button>
-                </Grid> 
+                    <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 5 }} sx={{ height: '100vh' }} justifyContent="center">
+                        <Grid item xs={12} sm={12} md={12}>
+                            <Box
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Typography style={{color: 'white'}} gutterBottom variant="h2">
+                                    REGISTRO
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={12}>
+                            <Box
+                                display="flex"
+                                justifyContent="center"
+                                alignItems="center"
+                                >
+                                <Typography style={{color: 'white'}} variant="caption" display="block" >
+                                    Regístrate llenando el siguiente formularo y sigue las indicaciones para obtener tu credencial para Congreso Hacedores 2022.
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={12}>
+                            <Box
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Typography style={{color: 'white'}} variant="caption" display="block" >
+                                    Recuerda asistir temprano para asegurar tu lugar en cada conferencia.
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <FormControl fullWidth>
+                                <InputLabel>Tipo de documento</InputLabel>
+                                <Select
+                                    required
+                                    labelId="tipo-doc-label"
+                                    id="tipo-doc-select"
+                                    value={tipoDoc}
+                                    label="Tipo de documento"
+                                    onChange={handleChangeTipoDoc}
+                                    fullWidth
+                                >
+                                    {menuItemTipoDoc}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                        
+                            <ExampleTextField
+                                required
+                                margin="dense"
+                                id="nroDoc"
+                                label="Nro. Documento"
+                                type="text"
+                                variant="standard"
+                                fullWidth
+                                value={nroDoc}
+                                onChange={(e) => setNroDoc(e.target.value)}
+                                backgroundColor="white"
+                            />
+                        </Grid>
+                        
+                        <Grid item xs={12} sm={6} md={6}>
+                            <TextField
+                                required
+                                margin="dense"
+                                id="nombre"
+                                label="Nombres"
+                                type="text"
+                                variant="standard"
+                                fullWidth
+                                value={nombres}
+                                onChange={(e) => setNombres(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <TextField
+                                required
+                                margin="dense"
+                                id="apellidos"
+                                label="Apellidos"
+                                type="text"
+                                variant="standard"
+                                fullWidth
+                                value={apellidos}
+                                onChange={(e) => setApellidos(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <TextField
+                                required
+                                margin="dense"
+                                id="celular"
+                                label="Celular"
+                                type="text"
+                                variant="standard"
+                                fullWidth
+                                value={celular}
+                                onChange={(e) => setCelular(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <TextField
+                                required
+                                margin="dense"
+                                id="edad"
+                                label="Edad"
+                                type="number"
+                                variant="standard"
+                                fullWidth
+                                value={edad}
+                                onChange={(e) => setEdad(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <FormControl fullWidth>
+                                <InputLabel>Iglesia</InputLabel>
+                                <Select
+                                    required
+                                    labelId="iglesia-label"
+                                    id="iglesia-select"
+                                    value={iglesia}
+                                    label="Iglesia"
+                                    onChange={handleChangeIglesia}
+                                    fullWidth
+                                >
+                                    <MenuItem value="Casa de Vida">Casa de Vida</MenuItem>
+                                    <MenuItem value="Otra">Otra</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <TextField
+                                disabled={isDisabledIglesia}
+                                margin="dense"
+                                id="otraIglesia"
+                                label="Ingrese nombre de su iglesia"
+                                type="text"
+                                variant="standard"
+                                fullWidth
+                                value={otraIglesia}
+                                onChange={(e) => setOtraIglesia(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                        <TextField
+                                margin="dense"
+                                id="ciudad"
+                                label="Ciudad"
+                                type="text"
+                                variant="standard"
+                                fullWidth
+                                value={ciudad}
+                                onChange={(e) => setCiudad(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <TextField
+                                margin="dense"
+                                id="email"
+                                label="Correo electrónico"
+                                type="text"
+                                variant="standard"
+                                fullWidth
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </Grid> 
+                        <Grid item xs={12} sm={6} md={6}>
+                            <Box
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <ThemeProvider theme={theme}>
+                                    <Button type="submit" fullWidth variant="contained"  color="register" >Registrar</Button>
+                                </ThemeProvider>
+                            </Box>
+                            
+                            
+                        </Grid> 
+                    </Grid>
+                </Box>
             </Grid>
-        </Box>
+
+
+        </Grid>
     )
 }
