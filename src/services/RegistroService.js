@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-class UserService {
-    base_url = "https://ferrerepuestoscoquitoback.herokuapp.com";
+class RegistroService {
+    base_url = "http://157.245.131.122/";
 
-    login = async (credentials) => {
-        const url = this.base_url + "/login"
-        const res = await axios.post(url,credentials).catch(function (error) {
+    
+    getEvento = async () => {
+        const url = this.base_url + "evento/publicado"
+        const res = await axios.get(url).catch(function (error) {
             if (error.response) {
                 return error.response;
             }
@@ -14,5 +15,25 @@ class UserService {
         
     }
 
+    getAllTipoDocumento = async () => {
+        const url = this.base_url + "tipo-documento"
+        const res = await axios.get(url).catch(function (error) {
+            if (error.response) {
+                return error.response;
+            }
+          });
+        return res;
+        
+    }
+
+    createMakerBack = async (dataCreate) => {
+        const url = this.base_url + "registrar-maker"
+        const res = await axios.post(url,dataCreate).catch(function (error) {
+            if (error.response) {
+                return error.response;
+            }
+          });
+        return res;
+    }
 }
-export {UserService} ;
+export {RegistroService} ;
