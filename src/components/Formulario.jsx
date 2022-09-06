@@ -98,24 +98,25 @@ export default function Formulario(props) {
     }
 
     
-    const ExampleTextField = styled(TextField)({
-        backgroundColor: "#eee",
-        "& .MuiOutlinedInput-notchedOutline": {
-            border: "20px"
-        },
-        "&.Mui-focused": {
-            "& .MuiOutlinedInput-notchedOutline": {
-                border: "none"
-            }
-        }
-    });
+    // const ExampleTextField = styled(TextField)({
+    //     backgroundColor: "#eee",
+    //     "& .MuiOutlinedInput-notchedOutline": {
+    //         border: "20px"
+    //     },
+    //     "&.Mui-focused": {
+    //         "& .MuiOutlinedInput-notchedOutline": {
+    //             border: "none"
+    //         }
+    //     }
+    // });
 
 
     
     const theme = createTheme({
         palette: {
           register: {
-            main: '#ffff'
+            main: '#B227B3',
+            contrastText: '#fff',
           }
         },
     });
@@ -195,7 +196,7 @@ export default function Formulario(props) {
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
                         
-                            <ExampleTextField
+                            <TextField
                                 required
                                 margin="dense"
                                 id="nroDoc"
@@ -322,7 +323,7 @@ export default function Formulario(props) {
                             alignItems="center"
                             >
                                 <ThemeProvider theme={theme}>
-                                    <Button type="submit" fullWidth variant="contained"  color="register" >Registrar</Button>
+                                    <Button type="submit" fullWidth variant="contained"  color="register"  >Registrar</Button>
                                 </ThemeProvider>
                             </Box>
                             
