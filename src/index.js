@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './fonts/Mokoto/Mokoto_Glitch_Mark_2.ttf';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

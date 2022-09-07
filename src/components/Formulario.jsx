@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Image from '../img/in_posible_fondo_web.png'; // Import using relative path
 import { styled ,createTheme,ThemeProvider} from "@mui/material/styles";
 
 

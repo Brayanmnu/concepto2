@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@font-face {
+  font-family: 'Mokoto';
+  src: local('Mokoto'), url("./fonts/Mokoto/Mokoto_Glitch_Mark_2.ttf") format('truetype');
+}

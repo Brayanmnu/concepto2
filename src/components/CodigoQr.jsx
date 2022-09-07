@@ -10,14 +10,14 @@ export default function CodigoQr(props) {
 
     return (
         
-        <Grid container justifyContent="center">
-            <Grid item xs={12} sm={12} md={9}>
-                    <Grid container sx={{minHeight:'10vh', maxHeight:'25vh', minWidth:'40vh', maxWidth:'155vh'}} justifyContent="center">
+        <Grid container justifyContent="center" >
+            <Grid item xs={12} sm={12} md={9} style={{paddingTop:"10px"}}>
+                    <Grid container sx={{minHeight:'35vh', maxHeight:'255vh', minWidth:'60vh', maxWidth:'255vh'}} justifyContent="center">
                         <Grid
                             item
                             xs={12}
-                            sm={4}
-                            md={4}
+                            sm={6}
+                            md={6}
                             sx={{
                                 backgroundImage: `url(${ImageBanner})`,
                                 backgroundRepeat: 'no-repeat',
@@ -28,26 +28,18 @@ export default function CodigoQr(props) {
                     </Grid>
             </Grid>
             <Grid item xs={12} sm={12} md={12}>
-                <Box component="main" sx={{ flex: 1, py: 2, px: 3}}>
-                    <Grid container rowSpacing={2}>
-                        <Grid item xs={12} xm={12} md={12}>
-                            <Paper sx={{maxWidth: 300, maxHeight: 300, margin: 'auto', overflow: 'hidden' }} style={{borderRadius: 26}} >
-                                <Grid container rowSpacing={2}>
-                                    <Grid item>
-                                        <img class="card-img-top" src={"data:image/jpg;base64,"+props.codigoQr} style={{height:"45%", margin:"33px"}}/>
-                                    </Grid>
-                                </Grid> 
-                                
-                            </Paper>
-                        </Grid>
-                        
-                    </Grid>
-                    
-                    
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <Paper sx={{maxWidth: 300, maxHeight: 300, overflow: 'hidden' }} style={{borderRadius: 26}} >
+                        <Grid container>
+                            <Grid item>
+                                <img class="card-img-top" src={"data:image/jpg;base64,"+props.codigoQr} style={{height:"45%", margin:"33px"}}/>
+                            </Grid>
+                        </Grid> 
+                    </Paper>
                 </Box>
             </Grid>
             <Grid item xs={12} sm={12} md={12}>
-            <Box
+                <Box
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
@@ -57,7 +49,6 @@ export default function CodigoQr(props) {
                     </Typography>
                     
                 </Box>
-                
             </Grid>
         </Grid>
         
