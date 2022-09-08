@@ -203,6 +203,7 @@ export default function Formulario(props) {
         </Grid>
         <Grid item xs={12} sm={6} md={6} style={styleInputs}>
           <TextField
+            required={!isDisabledIglesia}
             disabled={isDisabledIglesia}
             id="otraIglesia"
             name="otraIglesia"
