@@ -19,8 +19,7 @@ export default function Formulario(props) {
   const [menuItemTipoDoc, setMenuItemTipoDoc] = useState([]);
   const [evento, setEvento] = useState('');
   const [isSendForm, setIsSendForm] = useState(false);
-
-
+  
   const handleChangeIglesia = (event) => {
     const isDisabledIglesia = event.target.value !== 'Otra';
     setIsDisabledIglesia(isDisabledIglesia)
