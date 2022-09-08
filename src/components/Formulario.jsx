@@ -18,7 +18,8 @@ export default function Formulario(props) {
   const [isDisabledIglesia, setIsDisabledIglesia] = useState(true);
   const [menuItemTipoDoc, setMenuItemTipoDoc] = useState([]);
   const [evento, setEvento] = useState('');
-
+  const [isSendForm, setIsSendForm] = useState(false);
+  
   const handleChangeIglesia = (event) => {
     const isDisabledIglesia = event.target.value !== 'Otra';
     setIsDisabledIglesia(isDisabledIglesia)
@@ -26,6 +27,7 @@ export default function Formulario(props) {
 
   const registrarMaker = async (event) => {
     event.preventDefault();
+    setIsSendForm(true)
 
     const iglesiaRegistro = event.target.iglesia.value === "Otra"
       ? event.target.otraIglesia.value
@@ -49,6 +51,7 @@ export default function Formulario(props) {
         const makerResponseData = await makerResponse.data;
         if (makerResponseData.status=="ok") {
           props.setIsCreated(true)
+          setIsSendForm(false)
           props.setCodigoQr(makerResponseData.codigo_qr)
           props.setName(makerResponseData.nombres_apellidos)
         }
@@ -239,7 +242,7 @@ export default function Formulario(props) {
             alignItems="center"
             style={{ marginBottom: '1rem' }}
           >
-            <Button type="submit" fullWidth variant="contained" color="register">
+            <Button disabled={isSendForm} type="submit" fullWidth variant="contained" color="register">
               Registrar
             </Button>
           </Box>
