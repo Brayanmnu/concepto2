@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 class RegistroService {
-    base_url = "http://157.245.131.122/";
+    base_url = "https://back-congresohacedores.herokuapp.com/";
 
     
     getEvento = async () => {
