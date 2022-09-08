@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { styled ,createTheme,ThemeProvider} from "@mui/material/styles";
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 import {RegistroService} from '../services/RegistroService'
 
@@ -30,6 +30,7 @@ export default function Formulario(props) {
     const [isDisabledIglesia, setIsDisabledIglesia] = useState(true);
     const [menuItemTipoDoc, setMenuItemTipoDoc] = useState('');
     const [evento, setEvento] = useState('');
+    const [isSendForm, setIsSendForm] = useState(false);
 
     
     var arrayTipoDocumento = []
@@ -65,6 +66,7 @@ export default function Formulario(props) {
     }
 
     async function registrarMaker(event) {
+        setIsSendForm(true)
         event.preventDefault();
         var iglesiaRegistro = iglesia
         if(iglesia=="Otra"){
@@ -90,6 +92,7 @@ export default function Formulario(props) {
             const makerResponseData = await makerResponse.data; 
             if(makerResponseData.status=="ok"){
                 props.setIsCreated(true)
+                setIsSendForm(false)
                 props.setCodigoQr(makerResponseData.codigo_qr)
                 props.setName(makerResponseData.nombres_apellidos)
             }
@@ -125,7 +128,10 @@ export default function Formulario(props) {
         reloadDataConfig();
     }, [,]);
     
-    return(
+    return isSendForm? (
+        <CircularProgress color="secondary" />
+    )
+    :(
         <Box component="form" onSubmit={registrarMaker}  m={{ xs: 3, sm:3, md: 4 }} pt={{ xs: 3, sm: 3, md: 7 }} >
             <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 5 }} sx={{ height: '100vh' }} >
                 <Grid item xs={12} sm={12} md={12}>
@@ -307,7 +313,7 @@ export default function Formulario(props) {
                     >
                         <Grid item xs={12} sm={4} md={4}>
                         <ThemeProvider theme={theme}>
-                            <Button type="submit" fullWidth variant="contained"  color="register"  >Registrar</Button>
+                            <Button  disabled={isSendForm} type="submit" fullWidth variant="contained"  color="register"  >Registrar</Button>
                         </ThemeProvider>
                         </Grid>
                         
