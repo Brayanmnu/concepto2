@@ -81,174 +81,177 @@ export default function Formulario(props) {
     <Box
       component="form"
       onSubmit={registrarMaker}
-      m={{ xs: 3, sm:3, md: 4 }}
-      pt={{ xs: 3, sm: 3, md: 7 }}
+      pt={3}
       style={{ margin: '0px 30px' }}
     >
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <Typography style={{color: 'white'}} gutterBottom variant="h2">
-          REGISTRO
-        </Typography>
-        <Typography style={{ color: 'white', marginBottom: '12px' }}>
-          Regístrate llenando el siguiente formularo y sigue las indicaciones para obtener tu credencial para Congreso Hacedores 2022.
-        </Typography>
-        <Typography style={{color: 'white'}}>
-          Recuerda asistir temprano para asegurar tu lugar en cada conferencia.
-        </Typography>
-      </div>
+      <div style={{ maxWidth: '1020px', margin: '0px auto'}}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <Typography style={{color: 'white'}} gutterBottom variant="h2">
+            REGISTRO
+          </Typography>
+          <Typography style={{ color: 'white', marginBottom: '12px' }}>
+            Regístrate llenando el siguiente formularo y sigue las indicaciones para obtener tu credencial para Congreso Hacedores 2022.
+          </Typography>
+          <Typography style={{color: 'white'}}>
+            Recuerda asistir temprano para asegurar tu lugar en cada conferencia.
+          </Typography>
+        </div>
 
-      <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 5 }}>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <FormControl fullWidth>
-            <InputLabel>Tipo de documento</InputLabel>
-            <Select
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 5 }}>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <FormControl fullWidth>
+              <InputLabel>Tipo de documento</InputLabel>
+              <Select
+                required
+                labelId="tipo-doc-label"
+                id="tipo-doc-select"
+                label="Tipo de documento"
+                fullWidth
+                variant="standard"
+                autoComplete="off"
+                name="id_tipo_doc"
+                defaultValue=""
+              >
+                {menuItemTipoDoc.map(({ id, descripcion }) => (
+                  <MenuItem key={id} value={id}>
+                    {descripcion}
+                    </MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
               required
-              labelId="tipo-doc-label"
-              id="tipo-doc-select"
-              label="Tipo de documento"
-              fullWidth
+              id="nroDoc"
+              name="nroDoc"
+              label="Nro. Documento"
+              type="text"
               variant="standard"
+              fullWidth
               autoComplete="off"
-              name="id_tipo_doc"
-              defaultValue=""
-            >
-              {menuItemTipoDoc.map(({ id, descripcion }) => (
-                <MenuItem key={id} value={id}>
-                  {descripcion}
-                  </MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            required
-            id="nroDoc"
-            name="nroDoc"
-            label="Nro. Documento"
-            type="text"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            required
-            id="nombre"
-            name="nombre"
-            label="Nombres"
-            type="text"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            required
-            id="apellidos"
-            name="apellidos"
-            label="Apellidos"
-            type="text"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            required
-            id="celular"
-            name="celular"
-            label="Celular"
-            type="text"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            required
-            id="edad"
-            name="edad"
-            label="Edad"
-            type="number"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <FormControl fullWidth>
-            <InputLabel>Iglesia</InputLabel>
-            <Select
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
               required
-              labelId="iglesia-label"
-              id="iglesia-select"
-              label="Iglesia"
-              onChange={handleChangeIglesia}
-              fullWidth
+              id="nombre"
+              name="nombre"
+              label="Nombres"
+              type="text"
               variant="standard"
+              fullWidth
               autoComplete="off"
-              name="iglesia"
-              defaultValue=""
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
+              required
+              id="apellidos"
+              name="apellidos"
+              label="Apellidos"
+              type="text"
+              variant="standard"
+              fullWidth
+              autoComplete="off"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
+              required
+              id="celular"
+              name="celular"
+              label="Celular"
+              type="text"
+              variant="standard"
+              fullWidth
+              autoComplete="off"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
+              required
+              id="edad"
+              name="edad"
+              label="Edad"
+              type="number"
+              variant="standard"
+              fullWidth
+              autoComplete="off"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <FormControl fullWidth>
+              <InputLabel>Iglesia</InputLabel>
+              <Select
+                required
+                labelId="iglesia-label"
+                id="iglesia-select"
+                label="Iglesia"
+                onChange={handleChangeIglesia}
+                fullWidth
+                variant="standard"
+                autoComplete="off"
+                name="iglesia"
+                defaultValue=""
+              >
+                <MenuItem key={1} value="Casa de Vida">Casa de Vida</MenuItem>
+                <MenuItem key={2} value="Otra">Otra</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
+              required={!isDisabledIglesia}
+              disabled={isDisabledIglesia}
+              id="otraIglesia"
+              name="otraIglesia"
+              label="Nombre de su iglesia"
+              type="text"
+              variant="standard"
+              fullWidth
+              autoComplete="off"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
+              id="ciudad"
+              name="ciudad"
+              label="Ciudad"
+              type="text"
+              variant="standard"
+              fullWidth
+              autoComplete="off"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+            <TextField
+              id="email"
+              name="email"
+              label="Correo electrónico"
+              type="text"
+              variant="standard"
+              fullWidth
+              autoComplete="off"
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} style={styleInputs}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              style={{ marginBottom: '1rem' }}
             >
-              <MenuItem key={1} value="Casa de Vida">Casa de Vida</MenuItem>
-              <MenuItem key={2} value="Otra">Otra</MenuItem>
-            </Select>
-          </FormControl>
+              <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
+                <Button disabled={isSendForm} type="submit" fullWidth variant="contained" color="register">
+                  Registrar
+                </Button>
+              </Grid>
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            required={!isDisabledIglesia}
-            disabled={isDisabledIglesia}
-            id="otraIglesia"
-            name="otraIglesia"
-            label="Nombre de su iglesia"
-            type="text"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            id="ciudad"
-            name="ciudad"
-            label="Ciudad"
-            type="text"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} style={styleInputs}>
-          <TextField
-            id="email"
-            name="email"
-            label="Correo electrónico"
-            type="text"
-            variant="standard"
-            fullWidth
-            autoComplete="off"
-          />
-        </Grid>
-        <Grid item xs={12} sm={12} md={12} style={styleInputs}>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            style={{ marginBottom: '1rem' }}
-          >
-            <Button disabled={isSendForm} type="submit" fullWidth variant="contained" color="register">
-              Registrar
-            </Button>
-          </Box>
-        </Grid>
-      </Grid>
+      </div>
     </Box>
   )
 }
