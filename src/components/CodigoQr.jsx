@@ -32,7 +32,7 @@ export default function CodigoQr(props) {
                     <Paper sx={{maxWidth: 300, maxHeight: 300, overflow: 'hidden' }} style={{borderRadius: 26}} >
                         <Grid container>
                             <Grid item>
-                                <img class="card-img-top" src={"data:image/jpg;base64,"+props.codigoQr} style={{height:"45%", margin:"33px"}}/>
+                                <img class="card-img-top" src={"data:image/jpg;base64,"+props.codigoQr} style={{height:"45%", margin:"27px"}}/>
                             </Grid>
                         </Grid> 
                     </Paper>
