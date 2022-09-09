@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useLayoutEffect } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -7,6 +7,11 @@ import ImageBanner from '../img/in_posible_banner.png'; // Import using relative
 
 
 export default function CodigoQr(props) {
+
+    useLayoutEffect(() => {
+        const root = document.getElementById('root');
+        root.style.background = "url(/fondo_fucsia.png) repeat"
+    }, [])
 
     return (
 
