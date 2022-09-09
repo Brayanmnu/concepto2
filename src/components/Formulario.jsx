@@ -19,7 +19,7 @@ export default function Formulario(props) {
   const [menuItemTipoDoc, setMenuItemTipoDoc] = useState([]);
   const [evento, setEvento] = useState('');
   const [isSendForm, setIsSendForm] = useState(false);
-  
+
   const handleChangeIglesia = (event) => {
     const isDisabledIglesia = event.target.value !== 'Otra';
     setIsDisabledIglesia(isDisabledIglesia)
@@ -82,11 +82,17 @@ export default function Formulario(props) {
       component="form"
       onSubmit={registrarMaker}
       pt={3}
-      style={{ margin: '0px 30px' }}
+      style={{ margin: '12px 30px 0px' }}
     >
       <div style={{ maxWidth: '1020px', margin: '0px auto'}}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <Typography style={{color: 'white'}} gutterBottom variant="h2">
+          <Typography
+            style={{color: 'white'}}
+            gutterBottom
+            variant="h2"
+            fontFamily="Mokoto,Roboto,Helvetica"
+            fontSize={40}
+          >
             REGISTRO
           </Typography>
           <Typography style={{ color: 'white', marginBottom: '12px' }}>

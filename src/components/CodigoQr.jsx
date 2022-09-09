@@ -9,7 +9,7 @@ import ImageBanner from '../img/in_posible_banner.png'; // Import using relative
 export default function CodigoQr(props) {
 
     return (
-        
+
         <Grid container justifyContent="center" >
             <Grid item xs={12} sm={12} md={9} style={{paddingTop:"10px"}}>
                     <Grid container sx={{minHeight:'35vh', maxHeight:'255vh', minWidth:'60vh', maxWidth:'255vh'}} justifyContent="center">
@@ -34,7 +34,7 @@ export default function CodigoQr(props) {
                             <Grid item>
                                 <img class="card-img-top" src={"data:image/jpg;base64,"+props.codigoQr} style={{height:"45%", margin:"27px"}}/>
                             </Grid>
-                        </Grid> 
+                        </Grid>
                     </Paper>
                 </Box>
             </Grid>
@@ -44,13 +44,19 @@ export default function CodigoQr(props) {
                 justifyContent="center"
                 alignItems="center"
                 >
-                    <Typography style={{color: 'white'}} gutterBottom variant="h3">
+                    <Typography
+                        style={{color: 'white'}}
+                        gutterBottom
+                        variant="h3"
+                        fontFamily="Mokoto,Roboto,Helvetica"
+                        fontSize={40}
+                    >
                         {props.name}
                     </Typography>
-                    
+
                 </Box>
             </Grid>
         </Grid>
-        
+
     )
 }
