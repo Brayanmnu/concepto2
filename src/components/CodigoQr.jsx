@@ -12,12 +12,21 @@ export default function CodigoQr(props) {
   return (
     <div
       style={{
-        height: 'calc(100vh - 18px)',
+        height: 'calc(120vh - 18px)',
         margin: '0px 24px',
         padding: '18px 0px 0px',
       }}
     >
-      <img
+        <Typography 
+        style={{ color: 'white', textAlign: 'center' }}
+        gutterBottom
+        variant="h3"
+        fontFamily="Mokoto,Roboto,Helvetica"
+        fontSize={20}
+        >
+          ¡Tu registro ha sido completado! 
+        </Typography>
+        <img
         src="/in_posible_banner.png"
         alt="in_posible_banner"
         style={{
@@ -32,7 +41,7 @@ export default function CodigoQr(props) {
         <Paper
           style={{
             borderRadius: 24,
-            margin: '0px auto 42px',
+            margin: '0px auto 15px',
             width: '80%',
             maxWidth: '240px',
           }}
@@ -56,6 +65,20 @@ export default function CodigoQr(props) {
       >
         {props.name}
       </Typography>
+      <div style={{ maxWidth: '1020px', margin: '0px auto'}}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <Typography style={{ color: 'white', marginBottom: '12px' }}>
+          Puedes recoger tu pulsera HACEDORES, los días 19, 20 y 21 de setiembre en Av. Perú 1236 de 9:00 a.m. a 7:00 p.m.
+        </Typography>
+        <Typography style={{ color: 'white', marginBottom: '12px' }}>
+          ¡Te esperamos! 
+        </Typography>
+        <Typography style={{ color: 'white', marginBottom: '12px' }}>
+          Nota: Si no recogiste tu pulsera los días mencionados, ya no podrás adquirirla. 
+        </Typography>
+        </div>
+      </div>
+      
     </div>
   )
 }
