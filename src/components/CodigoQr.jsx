@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 export default function CodigoQr(props) {
   useLayoutEffect(() => {
     const root = document.getElementById('root');
-    root.style.background = "url(/fondo_fucsia.png) repeat"
+    root.style.background = "url(/fondo_fucsia_2.png) repeat"
   }, [])
 
   return (
