@@ -1,67 +1,61 @@
-import React, { useState, useEffect, Fragment, useLayoutEffect } from "react";
-import Grid from '@mui/material/Grid';
+import React, { useLayoutEffect } from "react";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ImageBanner from '../img/in_posible_banner.png'; // Import using relative path
-
 
 export default function CodigoQr(props) {
+  useLayoutEffect(() => {
+    const root = document.getElementById('root');
+    root.style.background = "url(/fondo_fucsia.png) repeat"
+  }, [])
 
-    useLayoutEffect(() => {
-        const root = document.getElementById('root');
-        root.style.background = "url(/fondo_fucsia.png) repeat"
-    }, [])
+  return (
+    <div
+      style={{
+        height: 'calc(100vh - 18px)',
+        margin: '0px 24px',
+        padding: '18px 0px 0px',
+      }}
+    >
+      <img
+        src="/in_posible_banner.png"
+        alt="in_posible_banner"
+        style={{
+          width: "100%",
+          maxWidth: "360px",
+          margin: "0 auto",
+          display: "block",
+        }}
+      />
 
-    return (
+      <Box>
+        <Paper
+          style={{
+            borderRadius: 24,
+            margin: '0px auto 42px',
+            width: '80%',
+            maxWidth: '240px',
+          }}
+        >
+          <img
+            src={`data:image/jpg;base64,${props.codigoQr}`}
+            style={{
+              maxWidth: "calc(100% - 24px)",
+              margin: "12px"
+            }}
+          />
+        </Paper>
+      </Box>
 
-        <Grid container justifyContent="center" >
-            <Grid item xs={12} sm={12} md={9} style={{paddingTop:"10px"}}>
-                    <Grid container sx={{minHeight:'35vh', maxHeight:'255vh', minWidth:'60vh', maxWidth:'255vh'}} justifyContent="center">
-                        <Grid
-                            item
-                            xs={12}
-                            sm={6}
-                            md={6}
-                            sx={{
-                                backgroundImage: `url(${ImageBanner})`,
-                                backgroundRepeat: 'no-repeat',
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                            }}
-                        />
-                    </Grid>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12}>
-                <Box display="flex" justifyContent="center" alignItems="center">
-                    <Paper sx={{maxWidth: 300, maxHeight: 300, overflow: 'hidden' }} style={{borderRadius: 26}} >
-                        <Grid container>
-                            <Grid item>
-                                <img class="card-img-top" src={"data:image/jpg;base64,"+props.codigoQr} style={{height:"45%", margin:"27px"}}/>
-                            </Grid>
-                        </Grid>
-                    </Paper>
-                </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12}>
-                <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                >
-                    <Typography
-                        style={{color: 'white'}}
-                        gutterBottom
-                        variant="h3"
-                        fontFamily="Mokoto,Roboto,Helvetica"
-                        fontSize={40}
-                    >
-                        {props.name}
-                    </Typography>
-
-                </Box>
-            </Grid>
-        </Grid>
-
-    )
+      <Typography
+        style={{ color: 'white', textAlign: 'center' }}
+        gutterBottom
+        variant="h3"
+        fontFamily="Mokoto,Roboto,Helvetica"
+        fontSize={36}
+      >
+        {props.name}
+      </Typography>
+    </div>
+  )
 }
