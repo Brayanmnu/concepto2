@@ -112,6 +112,7 @@ export default function Formulario(props) {
                 labelId="tipo-doc-label"
                 id="tipo-doc-select"
                 label="Tipo de documento"
+                type="select"
                 fullWidth
                 variant="standard"
                 autoComplete="off"
@@ -236,7 +237,7 @@ export default function Formulario(props) {
               id="email"
               name="email"
               label="Correo electrónico"
-              type="text"
+              type="email"
               variant="standard"
               fullWidth
               autoComplete="off"
