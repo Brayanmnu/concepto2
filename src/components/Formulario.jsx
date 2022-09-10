@@ -12,8 +12,6 @@ import { RegistroService } from '../services/RegistroService'
 
 const registroService = new RegistroService();
 
-const styleInputs = { padding: '12px 18px' }
-
 export default function Formulario(props) {
   const [isDisabledIglesia, setIsDisabledIglesia] = useState(true);
   const [menuItemTipoDoc, setMenuItemTipoDoc] = useState([]);
@@ -33,30 +31,30 @@ export default function Formulario(props) {
       ? event.target.otraIglesia.value
       : event.target.iglesia.value
 
-      const dataFormMaker = {
-        id_tipo_doc: event.target.id_tipo_doc.value,
-        nro_doc: event.target.nroDoc.value,
-        nombre: event.target.nombre.value,
-        apellido: event.target.apellidos.value,
-        ciudad: event.target.ciudad.value,
-        edad: event.target.edad.value,
-        iglesia: iglesiaRegistro,
-        celular: event.target.celular.value,
-        email: event.target.email.value,
-        id_evento: evento
-      }
+    const dataFormMaker = {
+      id_tipo_doc: event.target.id_tipo_doc.value,
+      nro_doc: event.target.nroDoc.value,
+      nombre: event.target.nombre.value,
+      apellido: event.target.apellidos.value,
+      ciudad: event.target.ciudad.value,
+      edad: event.target.edad.value,
+      iglesia: iglesiaRegistro,
+      celular: event.target.celular.value,
+      email: event.target.email.value,
+      id_evento: evento
+    }
 
-      const makerResponse =  await registroService.createMakerBack(dataFormMaker);
-      if (makerResponse.status === 200) {
-        const makerResponseData = await makerResponse.data;
-        if (makerResponseData.status=="ok") {
-          props.setIsCreated(true)
-          setIsSendForm(false)
-          props.setCodigoQr(makerResponseData.codigo_qr)
-          props.setName(makerResponseData.nombres_apellidos)
-        }
+    const makerResponse =  await registroService.createMakerBack(dataFormMaker);
+    if (makerResponse.status === 200) {
+      const makerResponseData = await makerResponse.data;
+      if (makerResponseData.status === "ok") {
+        props.setIsCreated(true)
+        setIsSendForm(false)
+        props.setCodigoQr(makerResponseData.codigo_qr)
+        props.setName(makerResponseData.nombres_apellidos)
       }
     }
+  }
 
   useEffect(() => {
     const getTypeDocument = async () => {
@@ -84,7 +82,7 @@ export default function Formulario(props) {
       pt={3}
       style={{ margin: '12px 30px 0px' }}
     >
-      <div style={{ maxWidth: '1020px', margin: '0px auto'}}>
+      <div style={{ maxWidth: '900px', margin: '0px auto'}}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <Typography
             style={{color: 'white'}}
@@ -103,8 +101,8 @@ export default function Formulario(props) {
           </Typography>
         </div>
 
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 5 }}>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+        <Grid container rowSpacing={2} columnSpacing={{ lg: 4, md: 4, sm: 4, xl: 4 }}>
+          <Grid item xs={12} sm={6} md={6}>
             <FormControl fullWidth>
               <InputLabel>Tipo de documento</InputLabel>
               <Select
@@ -128,19 +126,20 @@ export default function Formulario(props) {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               required
               id="nroDoc"
               name="nroDoc"
               label="Nro. Documento"
-              type="text"
+              type="number"
               variant="standard"
               fullWidth
               autoComplete="off"
+              inputProps={{ inputMode: 'numeric' }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               required
               id="nombre"
@@ -152,7 +151,7 @@ export default function Formulario(props) {
               autoComplete="off"
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               required
               id="apellidos"
@@ -164,19 +163,20 @@ export default function Formulario(props) {
               autoComplete="off"
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               required
               id="celular"
               name="celular"
               label="Celular"
-              type="text"
+              type="number"
               variant="standard"
               fullWidth
               autoComplete="off"
+              inputProps={{ inputMode: 'numeric' }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               required
               id="edad"
@@ -186,9 +186,10 @@ export default function Formulario(props) {
               variant="standard"
               fullWidth
               autoComplete="off"
+              inputProps={{ inputMode: 'numeric' }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <FormControl fullWidth>
               <InputLabel>Iglesia</InputLabel>
               <Select
@@ -202,13 +203,14 @@ export default function Formulario(props) {
                 autoComplete="off"
                 name="iglesia"
                 defaultValue=""
+                type="text"
               >
                 <MenuItem key={1} value="Casa de Vida">Casa de Vida</MenuItem>
                 <MenuItem key={2} value="Otra">Otra</MenuItem>
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               required={!isDisabledIglesia}
               disabled={isDisabledIglesia}
@@ -221,7 +223,7 @@ export default function Formulario(props) {
               autoComplete="off"
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               id="ciudad"
               name="ciudad"
@@ -232,7 +234,7 @@ export default function Formulario(props) {
               autoComplete="off"
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} style={styleInputs}>
+          <Grid item xs={12} sm={6} md={6}>
             <TextField
               id="email"
               name="email"
@@ -243,7 +245,7 @@ export default function Formulario(props) {
               autoComplete="off"
             />
           </Grid>
-          <Grid item xs={12} sm={12} md={12} style={styleInputs}>
+          <Grid item xs={12} sm={12} md={12}>
             <Box
               display="flex"
               justifyContent="center"
