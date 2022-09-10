@@ -48,6 +48,7 @@ export default function CodigoQr(props) {
         >
           <img
             src={`data:image/jpg;base64,${props.codigoQr}`}
+            alt="codigo qr"
             style={{
               maxWidth: "calc(100% - 24px)",
               margin: "12px"
