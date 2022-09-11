@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { RegistroService } from '../services/RegistroService'
+import Dialog from '@mui/material/Dialog'
+import Alert from './Alert'
 
 const registroService = new RegistroService();
 
@@ -18,7 +20,12 @@ export default function Formulario(props) {
   const [isDisabledIglesia, setIsDisabledIglesia] = useState(true);
   const [menuItemTipoDoc, setMenuItemTipoDoc] = useState([]);
   const [evento, setEvento] = useState('');
+  const [disponible, setDisponible] = useState('');
   const [isSendForm, setIsSendForm] = useState(false);
+  const [soldOut, setSoldOut] = useState(false);
+  const [msgError, setMsgError] = useState('');
+  const [openAlert, setOpenAlert] = useState(false);
+
 
   const handleChangeIglesia = (event) => {
     const isDisabledIglesia = event.target.value !== 'Otra';
@@ -49,12 +56,26 @@ export default function Formulario(props) {
       const makerResponse =  await registroService.createMakerBack(dataFormMaker);
       if (makerResponse.status === 200) {
         const makerResponseData = await makerResponse.data;
+        console.log('makerResponseData.status: '+makerResponseData.status)
         if (makerResponseData.status=="ok") {
           props.setIsCreated(true)
           setIsSendForm(false)
           props.setCodigoQr(makerResponseData.codigo_qr)
           props.setName(makerResponseData.nombres_apellidos)
+        }else if (makerResponseData.status=="aforo"){
+          setSoldOut(true)
+          setDisponible(0)
+        }else if(makerResponseData.status=="doc_repetido"){
+          setOpenAlert(true);
+          setMsgError('Ya se encuentra registrado en el Congreso')
+          setIsSendForm(false)
+        }else{
+          setOpenAlert(true);
+          setMsgError('Ocurrió un error inesperado')
         }
+      }else{
+        setOpenAlert(true);
+        setMsgError('Ocurrió un error inesperado')
       }
     }
 
@@ -69,6 +90,11 @@ export default function Formulario(props) {
       const eventoResponse =  await registroService.getEvento();
       const eventoResponseData  = eventoResponse.data;
       setEvento(eventoResponseData.id)
+      setDisponible(eventoResponseData.disponible)
+      if(eventoResponseData.disponible<=0){
+        setDisponible(0)
+        setSoldOut(true)  
+      }
     }
 
     Promise.all([
@@ -94,6 +120,9 @@ export default function Formulario(props) {
             fontSize={40}
           >
             REGISTRO
+          </Typography>
+          <Typography style={{ color: '#B227B3', marginBottom: '12px' , fontWeight: 600 }}>
+            QUEDAN {disponible} CUPOS DISPONIBLES
           </Typography>
           <Typography style={{ color: 'white', marginBottom: '12px' }}>
             Regístrate llenando el siguiente formularo y sigue las indicaciones para obtener tu credencial para Congreso Hacedores 2022.
@@ -257,6 +286,18 @@ export default function Formulario(props) {
               </Grid>
             </Box>
           </Grid>
+          <Dialog open={soldOut}  PaperProps={{style: { backgroundColor: 'transparent', boxShadow: 'none',},}}>
+           <img
+              src="/sold_out.png"
+              alt="sold_out"
+              style={{
+                width: "100%",
+                maxWidth: "560px",
+                margin: "0 auto"
+              }}
+            />
+          </Dialog>
+          <Alert openAlert={openAlert} setOpenAlert={setOpenAlert} mensaje={msgError} severity="error"/>
         </Grid>
       </div>
     </Box>
