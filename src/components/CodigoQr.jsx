@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from "react";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 export default function CodigoQr(props) {
   useLayoutEffect(() => {
@@ -78,6 +79,9 @@ export default function CodigoQr(props) {
         </Typography>
         </div>
       </div>
+      <Typography style={{ color: '#95B1B8' }} fontSize={11}>
+        © CONGRESO HACEDORES 2022. | Powered by <Link underline="hover"  target="_blank" color='#A1CFDB' href="https://www.instagram.com/soybrayanneyra/">MUTec</Link>
+      </Typography>
       
     </div>
   )

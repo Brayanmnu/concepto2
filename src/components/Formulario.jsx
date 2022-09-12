@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { RegistroService } from '../services/RegistroService'
 import Dialog from '@mui/material/Dialog'
+import Link from '@mui/material/Link';
 import Alert from './Alert'
 
 const registroService = new RegistroService();
@@ -108,10 +109,10 @@ export default function Formulario(props) {
       component="form"
       onSubmit={registrarMaker}
       pt={3}
-      style={{ margin: '12px 30px 0px' }}
+      style={{ margin: '0px 30px 0px' }}
     >
       <div style={{ maxWidth: '1020px', margin: '0px auto'}}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
           <Typography
             style={{color: 'white'}}
             gutterBottom
@@ -285,7 +286,11 @@ export default function Formulario(props) {
                 </Button>
               </Grid>
             </Box>
+            <Typography style={{ color: '#95B1B8' }} fontSize={11}>
+              © CONGRESO HACEDORES 2022. | Powered by <Link underline="hover"  target="_blank" color='#A1CFDB' href="https://www.instagram.com/soybrayanneyra/">MUTec</Link>
+            </Typography>
           </Grid>
+          
           <Dialog open={soldOut}  PaperProps={{style: { backgroundColor: 'transparent', boxShadow: 'none',},}}>
            <img
               src="/sold_out.png"
